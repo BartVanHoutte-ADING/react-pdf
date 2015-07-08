@@ -18,7 +18,25 @@ var PDF = require('react-pdf');
 
 var MyApp = React.createClass({
   render: function() {
-    return <PDF file="somefile.pdf" page="2" />
+    
+    return <PDF file="somefile.pdf" page="2" onCompleted={this._onPdfCompleted} loading={(<span>My own loading message ...</span>)} />
+  },
+  _onPdfCompleted: function(page, pages){
+    this.setState({page: page, pages: pages});
+  }
+});
+```
+of
+```js
+var PDF = require('react-pdf');
+
+var MyApp = React.createClass({
+  render: function() {
+    
+    return <PDF content="YSBzaW1wbGUgcGRm..." page="1" scale="1.0" onCompleted={this._onPdfCompleted} loading={(<span>My own loading message ...</span>)} />
+  },
+  _onPdfCompleted: function(page, pages){
+    this.setState({page: page, pages: pages});
   }
 });
 ```
